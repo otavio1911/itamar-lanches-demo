@@ -1,1 +1,1406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10100f">
+<title>Itamar Lanches | Demonstração Black Tech</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #11110f;
+  --surface: #1c1b18;
+  --surface2: #25231f;
+  --accent: #f6ad36;
+  --text: #faf7f0;
+  --muted: #ada79c;
+  --line: #37332d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  width: min(1160px, calc(100% - 36px));
+  margin: auto;
+}
+
+.demo {
+  background: #f6ad36;
+  color: #241708;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 9px 16px;
+  letter-spacing: .02em;
+}
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #11110ff2;
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-family: Outfit, sans-serif;
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: -1.1px;
+}
+
+.logo b {
+  color: var(--accent);
+}
+
+.navlinks {
+  display: flex;
+  gap: 28px;
+  font-size: 14px;
+  color: #ded7c9;
+}
+
+.navlinks a:hover {
+  color: var(--accent);
+}
+
+.cartbtn, .primary {
+  border: 0;
+  background: var(--accent);
+  color: #1a1309;
+  border-radius: 12px;
+  font-weight: 800;
+  padding: 14px 20px;
+}
+
+.cartbtn {
+  white-space: nowrap;
+}
+
+.cartbtn span {
+  background: #1b160e;
+  color: var(--accent);
+  padding: 3px 8px;
+  border-radius: 20px;
+  margin-left: 7px;
+}
+
+.hero {
+  position: relative;
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      90deg,
+      #11110f 2%,
+      #11110ff2 42%,
+      #11110f52 100%
+    ),
+    url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1700&q=85') center/cover;
+}
+
+.hero .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font: 900 clamp(48px, 7vw, 91px)/.99 Outfit, sans-serif;
+  letter-spacing: -3px;
+  max-width: 720px;
+  margin: 20px 0;
+}
+
+.hero h1 em {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.hero p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #e2dcd0;
+  max-width: 470px;
+}
+
+.heroactions {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.ghost {
+  border: 1px solid #9c8f7a;
+  background: #16151399;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: -34px;
+  position: relative;
+  z-index: 2;
+}
+
+.feature {
+  padding: 24px;
+  background: #211f1b;
+  border: 1px solid #3a352d;
+  border-radius: 16px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  box-shadow: 0 12px 28px #0004;
+}
+
+.feature .icon {
+  font-size: 27px;
+}
+
+.feature strong {
+  display: block;
+  font-family: Outfit, sans-serif;
+}
+
+.feature small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.section {
+  padding: 86px 0;
+}
+
+.sectionhead {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.section h2 {
+  font: 800 clamp(33px, 4vw, 48px)/1.1 Outfit, sans-serif;
+  margin: 10px 0;
+}
+
+.sectionhead p {
+  color: var(--muted);
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.search {
+  width: 250px;
+  background: #24221e;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 13px 15px;
+  color: white;
+  outline: none;
+}
+
+.search:focus {
+  border-color: var(--accent);
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 27px;
+}
+
+.filter {
+  border: 1px solid #4b4439;
+  background: #1c1b18;
+  color: #cfc8ba;
+  border-radius: 30px;
+  padding: 10px 19px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.filter.active,
+.filter:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #17110a;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid #34312b;
+  border-radius: 19px;
+  overflow: hidden;
+  transition: transform .2s, border-color .2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #8b662f;
+}
+
+.pic {
+  height: 218px;
+  position: relative;
+  overflow: hidden;
+  background: #332b20;
+}
+
+.pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .35s;
+}
+
+.card:hover .pic img {
+  transform: scale(1.05);
+}
+
+.tag {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  background: #15130ddc;
+  border: 1px solid #ffffff24;
+  border-radius: 30px;
+  padding: 7px 11px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.cardbody {
+  padding: 20px;
+}
+
+.cardbody h3 {
+  font: 800 22px Outfit, sans-serif;
+  margin: 0 0 9px;
+}
+
+.cardbody p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  min-height: 44px;
+  margin: 0 0 22px;
+}
+
+.cardfoot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.price {
+  font: 800 22px Outfit, sans-serif;
+  color: var(--accent);
+}
+
+.add {
+  background: var(--accent);
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 13px;
+  color: #1b140a;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.about {
+  background: #1d1b17;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.aboutgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 65px;
+  align-items: center;
+}
+
+.aboutimg {
+  width: 100%;
+  height: 370px;
+  object-fit: cover;
+  border-radius: 22px;
+}
+
+.about p {
+  color: #c4bcb0;
+  line-height: 1.85;
+}
+
+.about .note {
+  padding: 14px 16px;
+  border-left: 3px solid var(--accent);
+  background: #29251e;
+  border-radius: 0 10px 10px 0;
+  font-size: 13px;
+}
+
+.footer {
+  padding: 36px 0;
+  color: #aba396;
+  font-size: 13px;
+}
+
+.footergrid {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  align-items: center;
+}
+
+.footer .logo {
+  color: #fff;
+}
+
+.disclaimer {
+  font-size: 11px;
+  color: #8c8478;
+  max-width: 650px;
+  line-height: 1.6;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #000a;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+
+.overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: min(440px, 100%);
+  background: #1b1a17;
+  z-index: 21;
+  transform: translateX(105%);
+  transition: transform .25s;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -20px 0 60px #0006;
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+.drawerhead {
+  padding: 25px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawerhead h2 {
+  font: 800 27px Outfit, sans-serif;
+  margin: 0;
+}
+
+.close {
+  border: 1px solid var(--line);
+  background: #2b2823;
+  color: #fff;
+  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  font-size: 21px;
+}
+
+.cartitems {
+  padding: 18px 24px;
+  overflow: auto;
+  flex: 1;
+}
+
+.cartitem {
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cartitem strong {
+  display: block;
+  font-size: 14px;
+}
+
+.cartitem small {
+  color: var(--muted);
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: 10px;
+}
+
+.qty button {
+  border: 1px solid #62543f;
+  background: #29251e;
+  color: var(--accent);
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  font-weight: 900;
+}
+
+.cartbottom {
+  border-top: 1px solid var(--line);
+  padding: 23px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  font: 800 22px Outfit, sans-serif;
+  margin-bottom: 15px;
+}
+
+.checkout {
+  width: 100%;
+  padding: 15px;
+  border: 0;
+  background: var(--accent);
+  border-radius: 11px;
+  font-weight: 800;
+}
+
+.cartbottom p {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 45px 10px;
+}
+
+.toast {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translate(-50%, 120px);
+  background: #f6ad36;
+  color: #1a1309;
+  padding: 13px 20px;
+  border-radius: 12px;
+  font-weight: 800;
+  z-index: 30;
+  transition: transform .25s;
+  box-shadow: 0 10px 30px #0007;
+}
+
+.toast.show {
+  transform: translate(-50%, 0);
+}
+
+@media(max-width:850px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .aboutgrid {
+    gap: 30px;
+  }
+
+  .hero {
+    min-height: 500px;
+  }
+
+  .navlinks {
+    display: none;
+  }
+}
+
+@media(max-width:580px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionhead {
+    display: block;
+  }
+
+  .search {
+    width: 100%;
+    margin-top: 14px;
+  }
+
+  .aboutgrid {
+    grid-template-columns: 1fr;
+  }
+
+  .aboutimg {
+    height: 260px;
+  }
+
+  .hero h1 {
+    letter-spacing: -1.8px;
+  }
+
+  .hero {
+    min-height: 510px;
+    background:
+      linear-gradient(90deg, #11110ff5, #11110fb0),
+      url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1100&q=85') center/cover;
+  }
+
+  .footergrid {
+    display: block;
+  }
+
+  .feature {
+    padding: 17px;
+  }
+
+  .section {
+    padding: 65px 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="demo">
+  PROJETO CONCEITUAL • DEMONSTRAÇÃO INDEPENDENTE DA BLACK TECH • PRODUTOS E PREÇOS ILUSTRATIVOS
+</div>
+
+<header class="top">
+  <nav class="nav wrap">
+
+    <a class="logo" href="#inicio">
+      ITAMAR <b>LANCHES.</b>
+    </a>
+
+    <div class="navlinks">
+      <a href="#inicio">Início</a>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#sobre">Sobre</a>
+    </div>
+
+    <button class="cartbtn" onclick="toggleCart(true)">
+      🛒 Meu pedido <span id="cartCount">0</span>
+    </button>
+
+  </nav>
+</header>
+
+<main>
+
+<section class="hero" id="inicio">
+  <div class="wrap">
+
+    <div class="eyebrow">
+      🍔 Seu próximo lanche favorito
+    </div>
+
+    <h1>
+      FOME DE <em>COISA BOA?</em>
+    </h1>
+
+    <p>
+      Hambúrgueres caprichados, porções para compartilhar
+      e muito sabor. Escolha seus favoritos e monte seu pedido!
+    </p>
+
+    <div class="heroactions">
+      <a class="primary" href="#cardapio">
+        Explorar cardápio ↗
+      </a>
+
+      <a class="ghost" href="#sobre">
+        Conheça a proposta
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<div class="wrap features">
+
+  <div class="feature">
+    <span class="icon">🍔</span>
+    <div>
+      <strong>Cardápio interativo</strong>
+      <small>Escolha com poucos cliques</small>
+    </div>
+  </div>
+
+  <div class="feature">
+    <span class="icon">🛒</span>
+    <div>
+      <strong>Monte seu pedido</strong>
+      <small>Carrinho e total automáticos</small>
+    </div>
+  </div>
+
+  <div class="feature">
+    <span class="icon">📱</span>
+    <div>
+      <strong>Pronto para o WhatsApp</strong>
+      <small>Prévia de mensagem do pedido</small>
+    </div>
+  </div>
+
+</div>
+
+<section class="section" id="cardapio">
+  <div class="wrap">
+
+    <div class="sectionhead">
+
+      <div>
+        <div class="eyebrow">
+          Feito para dar água na boca
+        </div>
+
+        <h2>
+          Nosso cardápio
+          <span style="color:var(--accent)">.</span>
+        </h2>
+
+        <p>
+          Uma experiência de pedido simples e rápida.
+          Os itens abaixo são exemplos e serão substituídos
+          pelo cardápio oficial após autorização.
+        </p>
+      </div>
+
+      <input
+        id="search"
+        class="search"
+        type="search"
+        placeholder="🔎 Buscar no cardápio..."
+        aria-label="Buscar produtos"
+      >
+
+    </div>
+
+    <div id="filters" class="filters"></div>
+
+    <div id="products" class="grid"></div>
+
+    <p id="noResults" style="display:none;color:var(--muted)">
+      Nenhum item encontrado.
+    </p>
+
+  </div>
+</section>
+
+<section class="section about" id="sobre">
+
+  <div class="wrap aboutgrid">
+
+    <img
+      class="aboutimg"
+      src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1100&q=85"
+      alt="Hambúrguer ilustrativo"
+    >
+
+    <div>
+
+      <div class="eyebrow">
+        Uma nova experiência digital
+      </div>
+
+      <h2>
+        Seu lanche favorito, a poucos cliques.
+      </h2>
+
+      <p>
+        Esta demonstração mostra como um site pode apresentar
+        o cardápio de forma atraente e permitir que os clientes
+        montem pedidos pelo celular, sem precisar instalar aplicativo.
+      </p>
+
+      <p class="note">
+        Este projeto é uma proposta independente criada pela Black Tech.
+        Não representa o site oficial do Itamar Lanches.
+        Imagens, descrições e valores são meramente ilustrativos.
+      </p>
+
+      <a
+        class="primary"
+        href="#cardapio"
+        style="display:inline-block;margin-top:12px"
+      >
+        Ver cardápio ↗
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer class="footer">
+
+  <div class="wrap footergrid">
+
+    <div>
+
+      <div class="logo">
+        ITAMAR <b>LANCHES.</b>
+      </div>
+
+      <p>
+        Uma experiência digital pensada para o seu negócio.
+      </p>
+
+    </div>
+
+    <div class="disclaimer">
+      Demonstração não oficial desenvolvida pela Black Tech
+      para fins de apresentação. Nenhum pedido é enviado
+      ao restaurante por este site. © 2026 Black Tech.
+    </div>
+
+  </div>
+
+</footer>
+
+<div
+  class="overlay"
+  id="overlay"
+  onclick="toggleCart(false)"
+></div>
+
+<aside
+  class="drawer"
+  id="drawer"
+  aria-label="Carrinho de compras"
+>
+
+  <div class="drawerhead">
+
+    <h2>🛒 Seu pedido</h2>
+
+    <button
+      class="close"
+      onclick="toggleCart(false)"
+      aria-label="Fechar carrinho"
+    >
+      ×
+    </button>
+
+  </div>
+
+  <div class="cartitems" id="cartItems"></div>
+
+  <div class="cartbottom">
+
+    <div class="total">
+      <span>Total</span>
+      <span id="total">R$ 0,00</span>
+    </div>
+
+    <button class="checkout" onclick="previewOrder()">
+      📋 Copiar resumo do pedido
+    </button>
+
+    <p>
+      Modo demonstração: o resumo é copiado para você visualizar.
+      Não há pagamento nem envio automático ao restaurante.
+    </p>
+
+  </div>
+
+</aside>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+
+// ======================================================
+// PRODUTOS ILUSTRATIVOS
+// Substituir pelo cardápio oficial após autorização.
+// ======================================================
+
+const products = [
+
+  {
+    id: 1,
+    name: 'X-Burger Clássico',
+    category: 'Hambúrgueres',
+    desc: 'Pão macio, hambúrguer suculento, queijo, alface e tomate.',
+    price: 22.90,
+    img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=850&q=80',
+    tag: 'Clássico'
+  },
+
+  {
+    id: 2,
+    name: 'X-Bacon Especial',
+    category: 'Hambúrgueres',
+    desc: 'Hambúrguer, queijo derretido, bacon crocante e molho especial.',
+    price: 29.90,
+    img: 'https://images.unsplash.com/photo-1553979459-d2229ba7433a?auto=format&fit=crop&w=850&q=80',
+    tag: 'Favorito'
+  },
+
+  {
+    id: 3,
+    name: 'Duplo Cheddar',
+    category: 'Hambúrgueres',
+    desc: 'Dois hambúrgueres, muito cheddar e cebola caramelizada.',
+    price: 35.90,
+    img: 'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=850&q=80',
+    tag: 'Duplo'
+  },
+
+  {
+    id: 4,
+    name: 'Batata Crocante',
+    category: 'Porções',
+    desc: 'Batatas douradas e sequinhas, perfeitas para compartilhar.',
+    price: 19.90,
+    img: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=850&q=80',
+    tag: 'Para dividir'
+  },
+
+  {
+    id: 5,
+    name: 'Porção Especial',
+    category: 'Porções',
+    desc: 'Porção generosa para acompanhar o lanche da galera.',
+    price: 39.90,
+    img: 'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=850&q=80',
+    tag: 'Especial'
+  },
+
+  {
+    id: 6,
+    name: 'Refrigerante Gelado',
+    category: 'Bebidas',
+    desc: 'A bebida perfeita para acompanhar seu pedido.',
+    price: 7.00,
+    img: 'https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=850&q=80',
+    tag: 'Geladinho'
+  },
+
+  {
+    id: 7,
+    name: 'Milk-shake Cremoso',
+    category: 'Bebidas',
+    desc: 'Cremoso, gelado e com aquele toque doce irresistível.',
+    price: 17.90,
+    img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=850&q=80',
+    tag: 'Doce'
+  },
+
+  {
+    id: 8,
+    name: 'Sanduíche da Casa',
+    category: 'Hambúrgueres',
+    desc: 'Uma combinação caprichada de carne, queijo e molho da casa.',
+    price: 31.90,
+    img: 'https://images.unsplash.com/photo-1561758033-d89a9ad46330?auto=format&fit=crop&w=850&q=80',
+    tag: 'Da casa'
+  },
+
+  {
+    id: 9,
+    name: 'Anéis de Cebola',
+    category: 'Porções',
+    desc: 'Cebola empanada crocante e douradinha.',
+    price: 21.90,
+    img: 'https://images.unsplash.com/photo-1639024471283-03518883512d?auto=format&fit=crop&w=850&q=80',
+    tag: 'Crocante'
+  }
+
+];
+
+// ======================================================
+// FORMATAÇÃO DOS PREÇOS
+// ======================================================
+
+const money = v => v.toLocaleString('pt-BR', {
+  style: 'currency',
+  currency: 'BRL'
+});
+
+// ======================================================
+// CARRINHO
+// ======================================================
+
+let cart = {};
+
+try {
+  cart = JSON.parse(
+    localStorage.getItem('blacktech_itamar_demo_cart') || '{}'
+  ) || {};
+} catch (e) {
+  cart = {};
+}
+
+let selected = 'Todos';
+
+const categories = [
+  'Todos',
+  ...new Set(products.map(p => p.category))
+];
+
+// ======================================================
+// FILTROS
+// ======================================================
+
+function renderFilters() {
+
+  document.getElementById('filters').innerHTML =
+    categories.map(c => `
+      <button
+        class="filter ${selected === c ? 'active' : ''}"
+        data-category="${c}"
+      >
+        ${c}
+      </button>
+    `).join('');
+
+  document.querySelectorAll('.filter').forEach(b => {
+
+    b.addEventListener('click', () => {
+
+      selected = b.dataset.category;
+
+      renderFilters();
+      renderProducts();
+
+    });
+
+  });
+
+}
+
+// ======================================================
+// PRODUTOS
+// ======================================================
+
+function renderProducts() {
+
+  const q = document
+    .getElementById('search')
+    .value
+    .toLocaleLowerCase('pt-BR');
+
+  const items = products.filter(p =>
+
+    (selected === 'Todos' || p.category === selected) &&
+
+    (p.name + ' ' + p.desc)
+      .toLocaleLowerCase('pt-BR')
+      .includes(q)
+
+  );
+
+  document.getElementById('products').innerHTML =
+    items.map(p => `
+
+      <article class="card">
+
+        <div class="pic">
+
+          <img
+            src="${p.img}"
+            alt="Imagem ilustrativa de ${p.name}"
+            loading="lazy"
+            onerror="this.style.opacity='.15'"
+          >
+
+          <span class="tag">
+            ${p.tag}
+          </span>
+
+        </div>
+
+        <div class="cardbody">
+
+          <h3>${p.name}</h3>
+
+          <p>${p.desc}</p>
+
+          <div class="cardfoot">
+
+            <strong class="price">
+              ${money(p.price)}
+            </strong>
+
+            <button
+              class="add"
+              data-id="${p.id}"
+            >
+              + Adicionar
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    `).join('');
+
+  document.getElementById('noResults').style.display =
+    items.length ? 'none' : 'block';
+
+  document.querySelectorAll('.add').forEach(b => {
+
+    b.addEventListener('click', () => {
+
+      addItem(+b.dataset.id);
+
+    });
+
+  });
+
+}
+
+// ======================================================
+// SALVAR CARRINHO
+// ======================================================
+
+function persist() {
+
+  localStorage.setItem(
+    'blacktech_itamar_demo_cart',
+    JSON.stringify(cart)
+  );
+
+  renderCart();
+
+}
+
+// ======================================================
+// ADICIONAR PRODUTO
+// ======================================================
+
+function addItem(id) {
+
+  cart[id] = (cart[id] || 0) + 1;
+
+  persist();
+
+  notify('Adicionado ao carrinho! 🛒');
+
+}
+
+// ======================================================
+// ALTERAR QUANTIDADE
+// ======================================================
+
+function changeQty(id, delta) {
+
+  cart[id] = (cart[id] || 0) + delta;
+
+  if (cart[id] <= 0) {
+    delete cart[id];
+  }
+
+  persist();
+
+}
+
+// ======================================================
+// ATUALIZAR CARRINHO
+// ======================================================
+
+function renderCart() {
+
+  const entries = Object.entries(cart)
+    .map(([id, qty]) => ({
+      p: products.find(p => p.id === +id),
+      qty
+    }))
+    .filter(x => x.p && x.qty > 0);
+
+  document.getElementById('cartCount').textContent =
+    entries.reduce((n, x) => n + x.qty, 0);
+
+  document.getElementById('total').textContent =
+    money(
+      entries.reduce(
+        (n, x) => n + x.qty * x.p.price,
+        0
+      )
+    );
+
+  document.getElementById('cartItems').innerHTML =
+    entries.length
+
+      ? entries.map(({ p, qty }) => `
+
+          <div class="cartitem">
+
+            <div>
+
+              <strong>${p.name}</strong>
+
+              <small>
+                ${money(p.price)} cada
+              </small>
+
+              <div class="qty">
+
+                <button
+                  data-id="${p.id}"
+                  data-delta="-1"
+                  aria-label="Diminuir ${p.name}"
+                >
+                  −
+                </button>
+
+                <span>${qty}</span>
+
+                <button
+                  data-id="${p.id}"
+                  data-delta="1"
+                  aria-label="Aumentar ${p.name}"
+                >
+                  +
+                </button>
+
+              </div>
+
+            </div>
+
+            <strong>
+              ${money(p.price * qty)}
+            </strong>
+
+          </div>
+
+        `).join('')
+
+      : `
+          <div class="empty">
+            🍔
+            <br><br>
+            Seu carrinho está vazio.
+            <br>
+            Escolha algo delicioso!
+          </div>
+        `;
+
+  document.querySelectorAll('.qty button').forEach(b => {
+
+    b.addEventListener('click', () => {
+
+      changeQty(
+        +b.dataset.id,
+        +b.dataset.delta
+      );
+
+    });
+
+  });
+
+}
+
+// ======================================================
+// ABRIR E FECHAR CARRINHO
+// ======================================================
+
+function toggleCart(open) {
+
+  document
+    .getElementById('overlay')
+    .classList.toggle('open', open);
+
+  document
+    .getElementById('drawer')
+    .classList.toggle('open', open);
+
+  document.body.style.overflow =
+    open ? 'hidden' : '';
+
+}
+
+// ======================================================
+// NOTIFICAÇÕES
+// ======================================================
+
+function notify(t) {
+
+  const el = document.getElementById('toast');
+
+  el.textContent = t;
+
+  el.classList.add('show');
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer = setTimeout(() => {
+
+    el.classList.remove('show');
+
+  }, 2300);
+
+}
+
+// ======================================================
+// COPIAR RESUMO DO PEDIDO
+// ======================================================
+
+async function previewOrder() {
+
+  const entries = Object.entries(cart)
+    .map(([id, qty]) => ({
+      p: products.find(p => p.id === +id),
+      qty
+    }))
+    .filter(x => x.p && x.qty > 0);
+
+  if (!entries.length) {
+
+    notify('Adicione um item primeiro!');
+
+    return;
+
+  }
+
+  const total = entries.reduce(
+    (s, x) => s + x.p.price * x.qty,
+    0
+  );
+
+  const msg =
+    'DEMONSTRAÇÃO — PEDIDO NÃO ENVIADO\n\n' +
+
+    entries.map(({ p, qty }) =>
+      `${qty}x ${p.name} — ${money(p.price * qty)}`
+    ).join('\n') +
+
+    '\n\nTotal: ' + money(total) +
+
+    '\n\nValores ilustrativos — Black Tech';
+
+  try {
+
+    await navigator.clipboard.writeText(msg);
+
+    notify('Resumo copiado! 📋');
+
+  } catch (e) {
+
+    window.prompt(
+      'Copie o resumo do pedido:',
+      msg
+    );
+
+  }
+
+}
+
+// ======================================================
+// INICIALIZAÇÃO
+// ======================================================
+
+document
+  .getElementById('search')
+  .addEventListener('input', renderProducts);
+
+document.addEventListener('keydown', e => {
+
+  if (e.key === 'Escape') {
+    toggleCart(false);
+  }
+
+});
+
+renderFilters();
+renderProducts();
+renderCart();
+
+</script>
+
+</body>
+</html>
